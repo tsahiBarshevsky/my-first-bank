@@ -3,9 +3,10 @@ import { View, Text, SafeAreaView, StyleSheet, StatusBar, Button } from "react-n
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useDispatch } from 'react-redux';
-import { getGoals } from './utils/AsyncStorageHandler';
+import { getActions, getGoals } from './utils/AsyncStorageHandler';
 import HomeScreen from './components/Home Screen';
 import GoalInsertion from './components/Insertion Screens/Goal';
+import ActionInsertion from './components/Insertion Screens/Action';
 
 const Stack = createStackNavigator();
 
@@ -18,10 +19,12 @@ const ApplicationNavigator = () => {
     useEffect(() => {
         // Fetching data from AsyncStorage
         Promise.all([
-            getGoals()
+            getGoals(),
+            getActions()
         ])
-            .then(([goals]) => {
-                dispatch({ type: 'SET_GOALS', goals: goals })
+            .then(([goals, actions]) => {
+                dispatch({ type: 'SET_GOALS', goals: goals });
+                dispatch({ type: 'SET_ACTIONS', actions: actions });
             });
     }, [dispatch]);
 
@@ -33,6 +36,7 @@ const ApplicationNavigator = () => {
                 <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
                     <Stack.Screen name="Home" component={HomeScreen} />
                     <Stack.Screen name="GoalInsertion" component={GoalInsertion} />
+                    <Stack.Screen name="ActionInsertion" component={ActionInsertion} />
                 </Stack.Navigator>
             </NavigationContainer>
             :
