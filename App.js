@@ -1,21 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import React, { useEffect } from 'react';
+import * as Updates from 'expo-updates';
+import { useFonts } from 'expo-font';
+import { I18nManager } from "react-native";
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+// import rootReducer from './src/reducers';
+import ApplicationNavigator from './src/ApplicationNavigator';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+I18nManager.forceRTL(true);
+// const store = createStore(rootReducer);
+
+const App = () => {
+
+    const [loaded] = useFonts({
+        VarelaRound: require('./assets/fonts/VarelaRound-Regular.ttf')
+    });
+
+
+    const reload = async () => {
+        await Updates.reloadAsync()
+    }
+
+    useEffect(() => {
+        if (!I18nManager.isRTL)
+            reload();
+    }, []);
+
+    if (!loaded)
+        return null;
+
+    return (
+        <ApplicationNavigator />
+    )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
