@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, StyleSheet, StatusBar, Button } from "react-n
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useDispatch } from 'react-redux';
+import { getGoals } from './utils/AsyncStorageHandler';
 import HomeScreen from './components/Home Screen';
 
 const Stack = createStackNavigator();
@@ -11,25 +12,17 @@ const ApplicationNavigator = () => {
 
     const [isLoaded, setIsLoaded] = useState(true);
     const [isFirstUse, setIsFirstUse] = useState(false);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     Fetching data from AsyncStorage
-    //     Promise.all([
-    //         getCourses(),
-    //         getFailure(),
-    //         getIsFirstUse()
-    //     ])
-    //         .then(([courses, failure, isFirstUse]) => {
-    //             dispatch({ type: 'SET_COURSES', courses: courses });
-    //             if (failure !== null)
-    //                 dispatch({ type: 'SET_SCORE', score: failure });
-    //             setTimeout(() => {
-    //                 setIsLoaded(true);
-    //             }, 1500);
-    //             setIsFirstUse(isFirstUse);
-    //         });
-    // }, [dispatch]);
+    useEffect(() => {
+        // Fetching data from AsyncStorage
+        Promise.all([
+            getGoals()
+        ])
+            .then(([goals]) => {
+                dispatch({ type: 'SET_GOALS', goals: goals })
+            });
+    }, [dispatch]);
 
     return isFirstUse === 'true' ? (
         null
