@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
@@ -10,7 +10,7 @@ const ActionsScreen = () => {
     // console.log("actions:", actions);
 
     return (
-        <View>
+        <ScrollView>
             {actions.map((action) => {
                 return (
                     <View key={action.id} style={{ marginBottom: 10, borderBottomWidth: 2 }}>
@@ -21,7 +21,7 @@ const ActionsScreen = () => {
                     </View>
                 )
             })}
-        </View>
+        </ScrollView>
     )
 }
 

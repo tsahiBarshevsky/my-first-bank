@@ -2,6 +2,7 @@ import React from 'react';
 import { View, useWindowDimensions, Button, Text } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { useSelector } from 'react-redux';
+import { clearAll } from '../../utils/AsyncStorageHandler';
 import GoalsScreen from '../Goals Screen';
 import ActionsScreen from '../Actions Screen';
 import { styles } from './styles';
@@ -27,6 +28,7 @@ const HomeScreen = ({ navigation }) => {
             <Text>יש ברשותך {currency}₪</Text>
             <Button onPress={() => navigation.navigate("ActionInsertion")} title='הוסף פעולה' />
             <Button onPress={() => navigation.navigate("GoalInsertion")} title='הוסף מטרה' />
+            <Button onPress={() => clearAll()} title='נקה' />
             <TabView
                 navigationState={{ index, routes }}
                 renderScene={renderScene}
