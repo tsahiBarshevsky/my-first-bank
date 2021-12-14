@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, TextInput, TouchableOpacity, Keyboard } from 'react-native';
 import { Formik } from 'formik';
 import { Picker } from '@react-native-picker/picker';
 import uuid from 'react-native-uuid';
@@ -84,6 +84,7 @@ const GoalInsertion = ({ navigation }) => {
                                         ref={sumRef}
                                         blurOnSubmit={false}
                                         onBlur={handleBlur('sum')}
+                                        onSubmitEditing={() => Keyboard.dismiss()}
                                     />
                                 </View>
                                 <TouchableOpacity

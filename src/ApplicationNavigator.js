@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, StyleSheet, StatusBar, Button } from "react-n
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useDispatch } from 'react-redux';
-import { getIsFirstUse, getActions, getCurrency, getGoals } from './utils/AsyncStorageHandler';
+import { getIsFirstUse, getActions, getCurrency, getGoals, getName } from './utils/AsyncStorageHandler';
 import RegistrationScreen from './components/Registration Screen';
 import HomeScreen from './components/Home Screen';
 import GoalInsertion from './components/Insertion Screens/Goal';
@@ -23,12 +23,14 @@ const ApplicationNavigator = () => {
             getCurrency(),
             getGoals(),
             getActions(),
-            getIsFirstUse()
+            getIsFirstUse(),
+            getName()
         ])
-            .then(([currency, goals, actions, isFirstUse]) => {
+            .then(([currency, goals, actions, isFirstUse, name]) => {
                 dispatch({ type: 'SET_CURRENCY', currency: currency });
                 dispatch({ type: 'SET_GOALS', goals: goals });
                 dispatch({ type: 'SET_ACTIONS', actions: actions });
+                dispatch({ type: 'SET_NAME', name: name });
                 setIsFirstUse(isFirstUse);
                 // setTimeout(() => {
                 setIsLoaded(true);

@@ -15,4 +15,11 @@ const purchaseGoal = (index, goal) => {
     }
 }
 
-export { addNewGoal, purchaseGoal };
+const removeGoal = (index) => {
+    return {
+        type: 'REMOVE_GOAL',
+        payload: index
+    }
+}
+
+export { addNewGoal, purchaseGoal, removeGoal };

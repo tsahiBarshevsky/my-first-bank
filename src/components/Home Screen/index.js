@@ -14,17 +14,19 @@ const renderScene = SceneMap({
 
 const HomeScreen = ({ navigation }) => {
 
+    const name = useSelector(state => state.name);
     const currency = useSelector(state => state.currency);
     const layout = useWindowDimensions();
 
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
         { key: 'actions', title: 'עובר ושב' },
-        { key: 'goals', title: 'מטרות' },
+        { key: 'goals', title: 'המטרות שלי' },
     ]);
 
     return (
         <View style={styles.container}>
+            <Text>היי, {name}!</Text>
             <Text>יש ברשותך {currency}₪</Text>
             <Button onPress={() => navigation.navigate("ActionInsertion")} title='הוסף פעולה' />
             <Button onPress={() => navigation.navigate("GoalInsertion")} title='הוסף מטרה' />

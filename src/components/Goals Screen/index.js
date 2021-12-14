@@ -3,7 +3,7 @@ import { View, Text, Button, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import update from 'immutability-helper';
 import uuid from 'react-native-uuid';
-import { purchaseGoal } from '../../actions/goals';
+import { purchaseGoal, removeGoal } from '../../actions/goals';
 import { getActions, getGoals, setActions, setGoals, setCurrency } from '../../utils/AsyncStorageHandler';
 import { addNewAction } from '../../actions/actions';
 import { decrement } from '../../actions/currency';
@@ -14,6 +14,13 @@ const GoalsScreen = () => {
     const goals = useSelector(state => state.goals);
     const currency = useSelector(state => state.currency);
     // console.log("goals:", goals);
+
+    const onRemoveGoal = (goal) => {
+        const index = goals.findIndex(currentGoal => currentGoal.id === goal.id);
+        const temp = goals;
+        setGoals(JSON.stringify(update(temp, { $splice: [[index, 1]] }))); // Update AsyncStorage
+        dispatch(removeGoal(index)); // Update store
+    }
 
     const onPurchaseGoal = (goal) => {
         const index = goals.findIndex(currentGoal => currentGoal.id === goal.id);
@@ -52,6 +59,7 @@ const GoalsScreen = () => {
                         {Number(goal.sum) <= currency && !goal.bought &&
                             <Button onPress={() => onPurchaseGoal(goal)} title='סמן כנקנה' />
                         }
+                        <Button onPress={() => onRemoveGoal(goal)} title='מחק' />
                         {/* <Button onPress={() => console.log(goal)} title='הדפס' /> */}
                     </View>
                 )

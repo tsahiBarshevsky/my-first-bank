@@ -84,6 +84,27 @@ const setIsFirstUse = async () => {
     }
 }
 
+const getName = async () => {
+    try {
+        const name = await AsyncStorage.getItem('name');
+        return name !== null ? name : '';
+    }
+    catch (e) {
+        alert("An unknown error occurred.");
+        console.log(e.message);
+    }
+}
+
+const setName = async (name) => {
+    try {
+        await AsyncStorage.setItem('name', name);
+    }
+    catch (e) {
+        alert("An unknown error occurred.");
+        console.log(e.message);
+    }
+}
+
 const clearAll = async () => {
     try {
         await AsyncStorage.clear();
@@ -98,5 +119,6 @@ export {
     getGoals, setGoals,
     setActions, getActions,
     getIsFirstUse, setIsFirstUse,
+    getName, setName,
     clearAll
 };
