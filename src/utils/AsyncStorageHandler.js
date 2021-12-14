@@ -1,5 +1,26 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const getCurrency = async () => {
+    try {
+        const value = await AsyncStorage.getItem('currency');
+        return value !== null ? Number(value) : 0;
+    }
+    catch (e) {
+        alert("An unknown error occurred.");
+        console.log(e.message);
+    }
+}
+
+const setCurrency = async (currency) => {
+    try {
+        await AsyncStorage.setItem('currency', currency);
+    }
+    catch (e) {
+        alert("An unknown error occurred.");
+        console.log(e.message);
+    }
+}
+
 const getGoals = async () => {
     try {
         const jsonValue = await AsyncStorage.getItem('goals');
@@ -48,8 +69,7 @@ const clearAll = async () => {
     } catch (e) {
         // clear error
     }
-
     console.log('Done.')
 }
 
-export { getGoals, setGoals, setActions, getActions, clearAll };
+export { getCurrency, setCurrency, getGoals, setGoals, setActions, getActions, clearAll };

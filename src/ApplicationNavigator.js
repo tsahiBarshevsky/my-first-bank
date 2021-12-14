@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, StyleSheet, StatusBar, Button } from "react-n
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useDispatch } from 'react-redux';
-import { getActions, getGoals } from './utils/AsyncStorageHandler';
+import { getActions, getCurrency, getGoals } from './utils/AsyncStorageHandler';
 import HomeScreen from './components/Home Screen';
 import GoalInsertion from './components/Insertion Screens/Goal';
 import ActionInsertion from './components/Insertion Screens/Action';
@@ -19,10 +19,12 @@ const ApplicationNavigator = () => {
     useEffect(() => {
         // Fetching data from AsyncStorage
         Promise.all([
+            getCurrency(),
             getGoals(),
             getActions()
         ])
-            .then(([goals, actions]) => {
+            .then(([currency, goals, actions]) => {
+                dispatch({ type: 'SET_CURRENCY', currency: currency });
                 dispatch({ type: 'SET_GOALS', goals: goals });
                 dispatch({ type: 'SET_ACTIONS', actions: actions });
             });
