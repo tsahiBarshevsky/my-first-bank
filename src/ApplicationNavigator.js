@@ -3,7 +3,8 @@ import { View, Text, SafeAreaView, StyleSheet, StatusBar, Button } from "react-n
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useDispatch } from 'react-redux';
-import { getActions, getCurrency, getGoals } from './utils/AsyncStorageHandler';
+import { getIsFirstUse, getActions, getCurrency, getGoals } from './utils/AsyncStorageHandler';
+import RegistrationScreen from './components/Registration Screen';
 import HomeScreen from './components/Home Screen';
 import GoalInsertion from './components/Insertion Screens/Goal';
 import ActionInsertion from './components/Insertion Screens/Action';
@@ -12,8 +13,8 @@ const Stack = createStackNavigator();
 
 const ApplicationNavigator = () => {
 
-    const [isLoaded, setIsLoaded] = useState(true);
-    const [isFirstUse, setIsFirstUse] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [isFirstUse, setIsFirstUse] = useState('');
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,17 +22,22 @@ const ApplicationNavigator = () => {
         Promise.all([
             getCurrency(),
             getGoals(),
-            getActions()
+            getActions(),
+            getIsFirstUse()
         ])
-            .then(([currency, goals, actions]) => {
+            .then(([currency, goals, actions, isFirstUse]) => {
                 dispatch({ type: 'SET_CURRENCY', currency: currency });
                 dispatch({ type: 'SET_GOALS', goals: goals });
                 dispatch({ type: 'SET_ACTIONS', actions: actions });
+                setIsFirstUse(isFirstUse);
+                // setTimeout(() => {
+                setIsLoaded(true);
+                // }, 1500);
             });
     }, [dispatch]);
 
     return isFirstUse === 'true' ? (
-        null
+        <RegistrationScreen setIsFirstUse={setIsFirstUse} />
     ) : (
         isLoaded ?
             <NavigationContainer>

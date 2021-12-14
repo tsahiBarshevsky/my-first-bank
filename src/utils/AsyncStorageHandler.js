@@ -63,6 +63,27 @@ const setActions = async (array) => {
     }
 }
 
+const getIsFirstUse = async () => {
+    try {
+        const firstUse = await AsyncStorage.getItem('firstUse');
+        return firstUse !== null ? firstUse : 'true';
+    }
+    catch (e) {
+        alert("An unknown error occurred.");
+        console.log(e.message);
+    }
+}
+
+const setIsFirstUse = async () => {
+    try {
+        await AsyncStorage.setItem('firstUse', 'false');
+    }
+    catch (e) {
+        alert("An unknown error occurred.");
+        console.log(e.message);
+    }
+}
+
 const clearAll = async () => {
     try {
         await AsyncStorage.clear();
@@ -72,4 +93,10 @@ const clearAll = async () => {
     console.log('Done.')
 }
 
-export { getCurrency, setCurrency, getGoals, setGoals, setActions, getActions, clearAll };
+export {
+    getCurrency, setCurrency,
+    getGoals, setGoals,
+    setActions, getActions,
+    getIsFirstUse, setIsFirstUse,
+    clearAll
+};
