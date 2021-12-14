@@ -16,6 +16,7 @@ const setGoals = async (array) => {
     }
     catch (e) {
         alert("An unknown error occurred.");
+        console.log(e.message);
     }
 }
 

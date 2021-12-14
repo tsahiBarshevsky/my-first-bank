@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useDispatch } from 'react-redux';
 import { getGoals } from './utils/AsyncStorageHandler';
 import HomeScreen from './components/Home Screen';
+import GoalInsertion from './components/Insertion Screens/Goal';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,7 @@ const ApplicationNavigator = () => {
             <NavigationContainer>
                 <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
                     <Stack.Screen name="Home" component={HomeScreen} />
+                    <Stack.Screen name="GoalInsertion" component={GoalInsertion} />
                 </Stack.Navigator>
             </NavigationContainer>
             :
