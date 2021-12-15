@@ -1,24 +1,18 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
+import { ScrollView } from 'react-native';
+import { useSelector } from 'react-redux';
+import { styles } from './styles';
+import ActionCard from './Action Card';
 
 const ActionsScreen = () => {
 
-    const dispatch = useDispatch();
     const actions = useSelector(state => state.actions);
-    // console.log("actions:", actions);
 
     return (
-        <ScrollView>
+        <ScrollView style={styles.container}>
             {actions.map((action) => {
                 return (
-                    <View key={action.id} style={{ marginBottom: 10, borderBottomWidth: 2 }}>
-                        <Text>{action.sum}</Text>
-                        <Text>{action.reason}</Text>
-                        <Text>{action.operation}</Text>
-                        <Text>{moment(action.date).format('DD/MM/YY')}</Text>
-                    </View>
+                    <ActionCard key={action.id} action={action} />
                 )
             })}
         </ScrollView>

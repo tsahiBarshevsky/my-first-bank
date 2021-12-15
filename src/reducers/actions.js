@@ -8,6 +8,8 @@ const actionsReducer = (state = INITIAL_STATE, action) => {
             return action.actions;
         case 'ADD_NEW_ACTION':
             return update(state, { $push: [action.payload] });
+        case 'REMOVE_ACTION':
+            return update(state, { $splice: [[action.payload, 1]] });
         default:
             return state;
     }

@@ -5,4 +5,11 @@ const addNewAction = (action) => {
     }
 }
 
-export { addNewAction };
+const removeAction = (index) => {
+    return {
+        type: 'REMOVE_ACTION',
+        payload: index
+    }
+}
+
+export { addNewAction, removeAction };
