@@ -4,9 +4,11 @@ import { Formik } from 'formik';
 import { Picker } from '@react-native-picker/picker';
 import uuid from 'react-native-uuid';
 import { useDispatch, useSelector } from 'react-redux';
+import { Feather } from '@expo/vector-icons';
 import { getActions, setActions, setCurrency } from '../../../utils/AsyncStorageHandler';
 import { addNewAction } from '../../../actions/actions';
 import { increment, decrement } from '../../../actions/currency';
+import { ActionSchema } from '../../../utils/ActionSchema';
 import { styles } from '../styles';
 
 const ActionInsertion = ({ navigation }) => {
@@ -61,8 +63,20 @@ const ActionInsertion = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text>הוספת פעולה</Text>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.header}>
+                <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={() => navigation.goBack()}
+                    style={styles.backButton}
+                >
+                    <Feather name="chevron-right" size={20} color="white" />
+                </TouchableOpacity>
+                <Text style={[styles.text, styles.title, styles.white]}>הוספת פעולה</Text>
+            </View>
+            <ScrollView
+                style={styles.scorllView}
+                showsVerticalScrollIndicator={false}
+            >
                 <KeyboardAvoidingView
                     enabled
                     behavior={Platform.OS === 'ios' ? 'padding' : null}
@@ -70,22 +84,23 @@ const ActionInsertion = ({ navigation }) => {
                     <Formik
                         initialValues={{ reason: '', sum: '' }}
                         enableReinitialize
-                        onSubmit={(values, { resetForm }) => {
-                            onAddNewAction(values);
-                            resetForm();
-                        }}
+                        validationSchema={ActionSchema}
+                        onSubmit={(values) => onAddNewAction(values)}
                     >
                         {({ handleChange, handleSubmit, handleBlur, values, errors, setErrors, touched }) => (
                             <View>
-                                <Picker
-                                    selectedValue={operation}
-                                    onValueChange={(itemValue, itemIndex) =>
-                                        setOperation(itemValue)
-                                    }>
-                                    <Picker.Item label="הפקדה" value="deposit" />
-                                    <Picker.Item label="משיכה" value="withdrawal" />
-                                </Picker>
-                                <View>
+                                <View style={styles.pickerBorder}>
+                                    <Picker
+                                        selectedValue={operation}
+                                        onValueChange={(itemValue, itemIndex) =>
+                                            setOperation(itemValue)
+                                        }
+                                    >
+                                        <Picker.Item label="הפקדה" value="deposit" style={styles.pickerItem} />
+                                        <Picker.Item label="משיכה" value="withdrawal" style={styles.pickerItem} />
+                                    </Picker>
+                                </View>
+                                <View style={styles.textInputContainer}>
                                     <TextInput
                                         value={values.reason}
                                         onChangeText={handleChange('reason')}
@@ -94,9 +109,11 @@ const ActionInsertion = ({ navigation }) => {
                                         onSubmitEditing={() => sumRef.current.focus()}
                                         blurOnSubmit={false}
                                         onBlur={handleBlur('reason')}
+                                        style={styles.textInput}
                                     />
                                 </View>
-                                <View>
+                                {touched.reason && errors.reason && <Text style={styles.error}>{errors.reason}</Text>}
+                                <View style={styles.textInputContainer}>
                                     <TextInput
                                         value={values.sum}
                                         onChangeText={handleChange('sum')}
@@ -106,13 +123,16 @@ const ActionInsertion = ({ navigation }) => {
                                         blurOnSubmit={false}
                                         onBlur={handleBlur('sum')}
                                         onSubmitEditing={() => Keyboard.dismiss()}
+                                        style={styles.textInput}
                                     />
                                 </View>
+                                {touched.sum && errors.sum && <Text style={styles.error}>{errors.sum}</Text>}
                                 <TouchableOpacity
                                     activeOpacity={0.7}
                                     onPress={() => { handleSubmit(); setErrors({}) }}
+                                    style={styles.button}
                                 >
-                                    <Text style={{ fontFamily: 'VarelaRound' }}>הוספה</Text>
+                                    <Text style={[styles.text, styles.white]}>הוספה</Text>
                                 </TouchableOpacity>
                             </View>
                         )}
