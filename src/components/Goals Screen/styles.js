@@ -25,7 +25,9 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     leftSide: {
-        marginTop: 2
+        marginTop: 2,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     cardType: {
         width: 40,

@@ -5,10 +5,10 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-        backgroundColor: primary
+        backgroundColor: background
     },
     scrollview: {
-        backgroundColor: primary,
+        backgroundColor: background,
         height: '100%',
         flexGrow: 1
     },
@@ -17,17 +17,24 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: primary,
         height: 220,
-        marginBottom: 15
+        paddingBottom: 15,
+        // marginBottom: 15,
+        borderBottomRightRadius: 75
     },
     image: {
         width: '100%',
         height: '100%',
         flex: 1
     },
+    texts: {
+        alignItems: 'flex-start',
+        width: '100%',
+        paddingHorizontal: 20
+    },
     form: {
         backgroundColor: background,
-        borderTopRightRadius: 25,
-        borderTopLeftRadius: 25,
+        // borderTopRightRadius: 25,
+        // borderTopLeftRadius: 25,
         paddingHorizontal: 20,
         justifyContent: 'center',
         minHeight: Dimensions.get('window').height - 259

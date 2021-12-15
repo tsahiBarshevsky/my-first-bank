@@ -8,6 +8,7 @@ import RegistrationScreen from './components/Registration Screen';
 import HomeScreen from './components/Home Screen';
 import GoalInsertion from './components/Insertion Screens/Goal';
 import ActionInsertion from './components/Insertion Screens/Action';
+import GoalScreen from './components/Goal Screen';
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,7 @@ const ApplicationNavigator = () => {
                     <Stack.Screen name="Home" component={HomeScreen} />
                     <Stack.Screen name="GoalInsertion" component={GoalInsertion} />
                     <Stack.Screen name="ActionInsertion" component={ActionInsertion} />
+                    <Stack.Screen name="GoalScreen" component={GoalScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
             :

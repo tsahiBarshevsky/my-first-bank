@@ -22,4 +22,16 @@ const removeGoal = (index) => {
     }
 }
 
-export { addNewGoal, purchaseGoal, removeGoal };
+const updateGoal = (index, type, name, sum) => {
+    return {
+        type: 'UPDATE_GOAL',
+        payload: {
+            index: index,
+            type: type,
+            name: name,
+            sum: sum
+        }
+    }
+}
+
+export { addNewGoal, purchaseGoal, removeGoal, updateGoal };

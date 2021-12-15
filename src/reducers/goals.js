@@ -12,6 +12,16 @@ const goalsReducer = (state = INITIAL_STATE, action) => {
             return [...update(state, { [action.payload.index]: { $merge: { bought: true } } })];
         case 'REMOVE_GOAL':
             return update(state, { $splice: [[action.payload, 1]] });
+        case 'UPDATE_GOAL':
+            return [...update(state, {
+                [action.payload.index]: {
+                    $merge: {
+                        type: action.payload.type,
+                        name: action.payload.name,
+                        sum: action.payload.sum
+                    }
+                }
+            })];
         default:
             return state;
     }

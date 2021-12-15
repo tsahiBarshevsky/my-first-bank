@@ -1,11 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 import { View, Text, Button, TouchableOpacity } from 'react-native';
-import { FontAwesome, Entypo, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome, Entypo, FontAwesome5, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import * as Progress from 'react-native-progress';
 import { useSelector, useDispatch } from 'react-redux';
 import update from 'immutability-helper';
 import uuid from 'react-native-uuid';
+import { useNavigation } from '@react-navigation/native';
 import { purchaseGoal, removeGoal } from '../../../actions/goals';
 import { getActions, getGoals, setActions, setGoals, setCurrency } from '../../../utils/AsyncStorageHandler';
 import { addNewAction } from '../../../actions/actions';
@@ -16,6 +17,7 @@ import { primary } from '../../../utils/Colors';
 const GoalCard = ({ goal }) => {
 
     const dispatch = useDispatch();
+    const navigation = useNavigation();
     const goals = useSelector(state => state.goals);
     const currency = useSelector(state => state.currency);
 
@@ -78,7 +80,17 @@ const GoalCard = ({ goal }) => {
                     </View>
                 </View>
                 <View style={styles.leftSide}>
-                    <TouchableOpacity onPress={() => onRemoveGoal()} activeOpacity={0.8}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('GoalScreen', { id: goal.id })}
+                        activeOpacity={0.8}
+                    >
+                        <MaterialIcons name="edit" size={19} color={primary} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => onRemoveGoal()}
+                        activeOpacity={0.8}
+                        style={{ marginLeft: 3 }}
+                    >
                         <MaterialCommunityIcons name="delete" size={20} color={primary} />
                     </TouchableOpacity>
                 </View>
