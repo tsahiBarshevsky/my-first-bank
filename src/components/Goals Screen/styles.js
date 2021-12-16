@@ -5,8 +5,11 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: background,
+    },
+    contentContainerStyle: {
         paddingHorizontal: 10,
-        paddingVertical: 20,
+        paddingTop: 20,
+        paddingBottom: 55
     },
     cardContainer: {
         backgroundColor: 'white',
@@ -30,8 +33,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     cardType: {
-        width: 40,
-        height: 40,
+        width: 45,
+        height: 45,
         borderRadius: 5,
         marginRight: 10,
         backgroundColor: '#BDBDC6',
@@ -47,10 +50,10 @@ export const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        fontSize: 15,
+        fontSize: 17,
     },
     date: {
-        fontSize: 10,
+        fontSize: 12,
         color: '#9e9e9e'
     },
     text: {

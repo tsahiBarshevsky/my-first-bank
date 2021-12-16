@@ -40,8 +40,8 @@ const HomeScreen = ({ navigation }) => {
             <StatusBar backgroundColor={primary} style='light' />
             <View style={styles.header}>
                 <View style={styles.textWrapper}>
-                    <Text style={styles.text}>היי, {name}!</Text>
-                    <Text style={styles.text}>יש ברשותך {currency}₪</Text>
+                    <Text style={[styles.text, styles.title]}>היי {name}!</Text>
+                    <Text style={[styles.text, styles.subtitle]}>יש ברשותך {currency}₪</Text>
                 </View>
             </View>
             <TabView

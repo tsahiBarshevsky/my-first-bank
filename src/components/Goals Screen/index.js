@@ -9,7 +9,10 @@ const GoalsScreen = () => {
     const goals = useSelector(state => state.goals);
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView
+            style={styles.container}
+            contentContainerStyle={styles.contentContainerStyle}
+        >
             {goals.map((goal) => {
                 return (
                     <GoalCard key={goal.id} goal={goal} />

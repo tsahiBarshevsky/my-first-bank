@@ -25,6 +25,11 @@ export const styles = StyleSheet.create({
     text: {
         color: 'white',
         fontFamily: 'VarelaRound',
+    },
+    title: {
+        fontSize: 25
+    },
+    subtitle: {
         fontSize: 20
     }
 });

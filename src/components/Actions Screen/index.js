@@ -9,7 +9,10 @@ const ActionsScreen = () => {
     const actions = useSelector(state => state.actions);
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView
+            style={styles.container}
+            contentContainerStyle={styles.contentContainerStyle}
+        >
             {actions.map((action) => {
                 return (
                     <ActionCard key={action.id} action={action} />
