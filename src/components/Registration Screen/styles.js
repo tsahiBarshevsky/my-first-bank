@@ -18,13 +18,13 @@ export const styles = StyleSheet.create({
         backgroundColor: primary,
         height: 220,
         paddingBottom: 15,
-        // marginBottom: 15,
         borderBottomRightRadius: 75
     },
     image: {
-        width: '100%',
-        height: '100%',
-        flex: 1
+        width: 128,
+        height: 128,
+        marginTop: 10,
+        marginBottom: 20
     },
     texts: {
         alignItems: 'flex-start',

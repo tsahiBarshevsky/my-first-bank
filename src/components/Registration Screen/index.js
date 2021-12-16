@@ -36,7 +36,7 @@ const RegistrationScreen = ({ setIsFirstUse }) => {
                     behavior={Platform.OS === 'ios' ? 'padding' : null}
                 >
                     <View style={styles.header}>
-                        <Image style={styles.image} resizeMode='contain' source={require('../../../assets/vector.png')} />
+                        <Image style={styles.image} resizeMode='contain' source={require('../../../assets/account.png')} />
                         <View style={styles.texts}>
                             <Text style={[styles.text, styles.title]}>הבנק הראשון שלי</Text>
                             <Text style={styles.text}>שתי שאלות קצרות ומתחילים</Text>
