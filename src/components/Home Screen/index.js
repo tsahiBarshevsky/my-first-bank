@@ -2,12 +2,14 @@ import React from 'react';
 import { View, useWindowDimensions, Button, Text } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { useSelector } from 'react-redux';
+import { StatusBar } from 'expo-status-bar';
+import { FloatingAction } from "react-native-floating-action";
+import { actions } from '../../utils/MenuActions';
 import { clearAll } from '../../utils/AsyncStorageHandler';
 import GoalsScreen from '../Goals Screen';
 import ActionsScreen from '../Actions Screen';
 import { styles } from './styles';
 import { primary } from '../../utils/Colors';
-import { StatusBar } from 'expo-status-bar';
 
 const renderScene = SceneMap({
     actions: ActionsScreen,
@@ -26,6 +28,13 @@ const HomeScreen = ({ navigation }) => {
         { key: 'goals', title: 'המטרות שלי' },
     ]);
 
+    const onItemPressed = (target) => {
+        if (target === 'bt_target')
+            navigation.navigate("GoalInsertion");
+        else
+            navigation.navigate("ActionInsertion");
+    }
+
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor={primary} style='light' />
@@ -35,9 +44,6 @@ const HomeScreen = ({ navigation }) => {
                     <Text style={styles.text}>יש ברשותך {currency}₪</Text>
                 </View>
             </View>
-            <Button onPress={() => navigation.navigate("ActionInsertion")} title='הוסף פעולה' />
-            <Button onPress={() => navigation.navigate("GoalInsertion")} title='הוסף מטרה' />
-            <Button onPress={() => clearAll()} title='נקה' />
             <TabView
                 navigationState={{ index, routes }}
                 renderScene={renderScene}
@@ -54,6 +60,15 @@ const HomeScreen = ({ navigation }) => {
                         inactiveColor='#FFFFFF66'
                     />
                 }
+            />
+            <FloatingAction
+                actions={actions}
+                onPressItem={target => onItemPressed(target)}
+                color={primary}
+                buttonSize={50}
+                position='left'
+                distanceToEdge={10}
+                actionsPaddingTopBottom={2}
             />
         </View>
     )
