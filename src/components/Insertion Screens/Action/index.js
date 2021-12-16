@@ -5,15 +5,18 @@ import { Picker } from '@react-native-picker/picker';
 import uuid from 'react-native-uuid';
 import { useDispatch, useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import { getActions, setActions, setCurrency } from '../../../utils/AsyncStorageHandler';
 import { addNewAction } from '../../../actions/actions';
 import { increment, decrement } from '../../../actions/currency';
 import { ActionSchema } from '../../../utils/ActionSchema';
 import { styles } from '../styles';
+import { primary } from '../../../utils/Colors';
 
 const ActionInsertion = ({ navigation }) => {
 
     const [operation, setOperation] = useState('deposit');
+    const [showAlert, setShowAlert] = useState(false);
     const sumRef = useRef(null);
     const dispatch = useDispatch();
     const currency = useSelector(state => state.currency);
@@ -57,7 +60,7 @@ const ActionInsertion = ({ navigation }) => {
                     navigation.navigate("Home");
                 }
                 else
-                    Alert.alert('אין לך מספיק כסף');
+                    setShowAlert(true);
         });
     }
 
@@ -139,6 +142,22 @@ const ActionInsertion = ({ navigation }) => {
                     </Formik>
                 </KeyboardAvoidingView>
             </ScrollView>
+            <AwesomeAlert
+                show={showAlert}
+                showProgress={false}
+                title="שגיאה!"
+                titleStyle={{ fontFamily: 'VarelaRound' }}
+                message="אין לך מספיק כסף כדי לבצע את המשיכה הזאת."
+                messageStyle={{ fontFamily: 'VarelaRound' }}
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showConfirmButton={true}
+                confirmText="בסדר"
+                confirmButtonTextStyle={{ fontFamily: 'VarelaRound' }}
+                confirmButtonStyle={{ width: 70, alignItems: 'center', borderRadius: 10 }}
+                confirmButtonColor={primary}
+                onConfirmPressed={() => setShowAlert(false)}
+            />
         </SafeAreaView>
     )
 }

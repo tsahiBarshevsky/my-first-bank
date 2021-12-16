@@ -3,12 +3,14 @@ import { View, Text, SafeAreaView, StyleSheet, StatusBar, Button } from "react-n
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useDispatch } from 'react-redux';
+import { PacmanIndicator } from 'react-native-indicators';
 import { getIsFirstUse, getActions, getCurrency, getGoals, getName } from './utils/AsyncStorageHandler';
 import RegistrationScreen from './components/Registration Screen';
 import HomeScreen from './components/Home Screen';
 import GoalInsertion from './components/Insertion Screens/Goal';
 import ActionInsertion from './components/Insertion Screens/Action';
 import GoalScreen from './components/Goal Screen';
+import { background, primary } from './utils/Colors';
 
 const Stack = createStackNavigator();
 
@@ -33,9 +35,9 @@ const ApplicationNavigator = () => {
                 dispatch({ type: 'SET_ACTIONS', actions: actions });
                 dispatch({ type: 'SET_NAME', name: name });
                 setIsFirstUse(isFirstUse);
-                // setTimeout(() => {
-                setIsLoaded(true);
-                // }, 1500);
+                setTimeout(() => {
+                    setIsLoaded(true);
+                }, 1500);
             });
     }, [dispatch]);
 
@@ -53,7 +55,7 @@ const ApplicationNavigator = () => {
             </NavigationContainer>
             :
             <SafeAreaView style={styles.container}>
-                <Text>loading</Text>
+                <PacmanIndicator color={primary} />
             </SafeAreaView>
     )
 }
@@ -66,7 +68,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-        padding: 10
+        padding: 10,
+        backgroundColor: background
     },
     text: {
         fontFamily: 'VarelaRound',
