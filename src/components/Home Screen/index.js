@@ -64,6 +64,7 @@ const HomeScreen = ({ navigation }) => {
                 actions={actions}
                 onPressItem={target => onItemPressed(target)}
                 color={primary}
+                overlayColor="rgba(69, 69, 69, 0.9)"
                 buttonSize={45}
                 position='left'
                 distanceToEdge={10}

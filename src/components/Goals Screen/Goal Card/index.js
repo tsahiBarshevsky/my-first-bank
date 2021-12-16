@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { View, Text, Button, TouchableOpacity } from 'react-native';
-import { FontAwesome, Entypo, FontAwesome5, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Feather, FontAwesome, Entypo, FontAwesome5, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import * as Progress from 'react-native-progress';
 import { useSelector, useDispatch } from 'react-redux';
 import update from 'immutability-helper';
@@ -80,23 +80,34 @@ const GoalCard = ({ goal }) => {
                     </View>
                 </View>
                 <View style={styles.leftSide}>
+                    {/* Purchase button */}
+                    {Number(goal.sum) <= currency && !goal.bought &&
+                        <TouchableOpacity
+                            onPress={() => onPurchaseGoal(goal)}
+                            activeOpacity={0.8}
+                        >
+                            <Feather name="check" size={23} color={primary} />
+                        </TouchableOpacity>
+                    }
+                    {/* Edit button */}
                     <TouchableOpacity
                         onPress={() => navigation.navigate('GoalScreen', { id: goal.id })}
                         activeOpacity={0.8}
+                        style={{ marginHorizontal: 3 }}
                     >
                         <MaterialIcons name="edit" size={19} color={primary} />
                     </TouchableOpacity>
+                    {/* Remove button */}
                     <TouchableOpacity
                         onPress={() => onRemoveGoal()}
                         activeOpacity={0.8}
-                        style={{ marginLeft: 3 }}
                     >
                         <MaterialCommunityIcons name="delete" size={20} color={primary} />
                     </TouchableOpacity>
                 </View>
             </View>
             <Progress.Bar
-                progress={currency / Number(goal.sum)}
+                progress={!goal.bought ? currency / Number(goal.sum) : 1}
                 width={null}
                 style={styles.progress}
                 color={primary}
@@ -105,12 +116,13 @@ const GoalCard = ({ goal }) => {
                 borderRadius={10}
             />
             <View style={styles.values}>
-                <Text style={styles.text}>{Number(goal.sum) >= currency ? currency : goal.sum}₪</Text>
+                {goal.bought ?
+                    <Text style={styles.text}>{goal.sum}₪</Text>
+                    :
+                    <Text style={styles.text}>{Number(goal.sum) >= currency ? currency : goal.sum}₪</Text>
+                }
                 <Text style={styles.text}>{goal.sum}₪</Text>
             </View>
-            {/* {Number(goal.sum) <= currency && !goal.bought &&
-                <Button onPress={() => onPurchaseGoal(goal)} title='סמן כנקנה' />
-            } */}
         </View>
     )
 }
