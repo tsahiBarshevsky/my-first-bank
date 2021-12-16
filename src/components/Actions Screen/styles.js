@@ -11,6 +11,17 @@ export const styles = StyleSheet.create({
         paddingTop: 20,
         paddingBottom: 55
     },
+    message: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 15
+    },
+    image: {
+        width: '100%',
+        height: 180,
+        marginBottom: 15
+    },
     cardContainer: {
         flexDirection: 'row',
         backgroundColor: 'white',

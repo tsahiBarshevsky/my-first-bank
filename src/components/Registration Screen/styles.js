@@ -21,10 +21,10 @@ export const styles = StyleSheet.create({
         borderBottomRightRadius: 75
     },
     image: {
-        width: 128,
-        height: 128,
-        marginTop: 10,
-        marginBottom: 20
+        width: '100%',
+        height: '100%',
+        flex: 1,
+        marginTop: 5,
     },
     texts: {
         alignItems: 'flex-start',

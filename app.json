@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "my-first-bank",
+    "name": "הבנק הראשון שלי",
     "slug": "my-first-bank",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#363749"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,12 +17,21 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tsahiBarshavsky.myFirstBank",
+      "buildNumber": "1.0.0"
     },
     "android": {
+      "package": "com.tsahiBarshavsky.myFirstBank",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "splash": {
+        "statusBar": {
+          "barStyle": "light-content"
+        }
       }
     },
     "web": {

@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { View, Text, ToastAndroid, TouchableOpacity } from 'react-native';
 import { Feather, FontAwesome, Entypo, FontAwesome5, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import * as Progress from 'react-native-progress';
 import { useSelector, useDispatch } from 'react-redux';
@@ -51,6 +51,7 @@ const GoalCard = ({ goal }) => {
             dispatch(purchaseGoal(index, goal));
             dispatch(decrement(Number(goal.sum)))
             dispatch(addNewAction(action));
+            ToastAndroid.show(`${goal.name} סומן כנקנה`, ToastAndroid.SHORT, ToastAndroid.BOTTOM);
         });
     }
 

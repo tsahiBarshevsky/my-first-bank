@@ -147,7 +147,7 @@ const ActionInsertion = ({ navigation }) => {
                 showProgress={false}
                 title="שגיאה!"
                 titleStyle={{ fontFamily: 'VarelaRound' }}
-                message="אין לך מספיק כסף כדי לבצע את המשיכה הזאת."
+                message={`אין לך מספיק כסף כדי לבצע את המשיכה הזאת. יתרה נוכחית: ${currency}.`}
                 messageStyle={{ fontFamily: 'VarelaRound' }}
                 closeOnTouchOutside={true}
                 closeOnHardwareBackPress={false}

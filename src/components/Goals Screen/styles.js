@@ -6,6 +6,17 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: background,
     },
+    message: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 15
+    },
+    image: {
+        width: '100%',
+        height: 180,
+        marginBottom: 15
+    },
     contentContainerStyle: {
         paddingHorizontal: 15,
         paddingTop: 20,
