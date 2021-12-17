@@ -19,6 +19,5 @@ Some technical details about this project: The app was developed using React Nat
 
 ### Photos
 
-<img src="https://lh3.googleusercontent.com/kNCQETKRZGWSiGIgVBhO0kXhRlqudNdnuFPiB0FkdAsnU7tJwbtqVXovMaxGhbmVLeQNJie0ktoh_Y0WZMNd6l3UA7CYPyK3RArlcyrLy7Ds76aH_2eJC4ycpQaqClHuQPyzEJthFA=w2400" width="600" height="420">
 <img src="https://lh3.googleusercontent.com/UWxERU670kv9CVyBZPhsvZmXFOW0Yx-Ojk5pjAsWLDUOWAk_IsNzj7x52ZtS3WoBEFr6wCgN-gZE4UrW3Fg1ItYxl8D54RoTRYKlwtzrXzx2-9eF5AfAHQcL9u1I7Tu1xEzO5tHypg=w2400" width="600" height="420">
 <img src="https://lh3.googleusercontent.com/jCdyehpUt-RP4K3Dx7pZB_HJpMvrNiCn6V61PUhiXdk3_Iln3SxOrvS9pKK11f8Yvdt71Kzs0w79Yah85BUCc6DkfdZ_zRA9Jemf2X8h9A7sXBVms88cp4a17JCOJfEZUUfU3MXnEA=w2400" width="600" height="420">
